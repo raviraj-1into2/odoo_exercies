@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_sale_project" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="before">
+                    <field name="delivery_status"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.view.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_status']" position="after">
+                    <field name="delivery_status"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

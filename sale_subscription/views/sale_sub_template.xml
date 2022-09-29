@@ -1,0 +1,63 @@
+<odoo>
+    <record id="view_sale_subscription_template_tree" model="ir.ui.view">
+        <field name="name">sale_subscription.template.tree</field>
+        <field name="model">sale_subscription.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="recurring_rule_type"/>
+                <field name="recurring_interval"/>
+                <field name="recurring_rule_boundary"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_subscription_template_from" model="ir.ui.view">
+        <field name="name">sale_subscription.template.form</field>
+        <field name="model">sale_subscription.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="recurring_interval"/>
+                        <field name="recurring_rule_type"/>
+                        <field name="recurring_rule_boundary"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_subscription_template" model="ir.actions.act_window">
+            <field name="name">Sale Subscription Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale_subscription.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view non content_smiling_face">
+                    Create your first sale subscription template!
+                </p>
+            </field>
+    </record>
+
+    <menuitem id="menu_sale_subscription_template_root"
+              name="Sale Subscription Template"
+              action="action_sale_subscription_template"
+              parent="menu_subscription_master"
+              sequence="2"/>
+</odoo>

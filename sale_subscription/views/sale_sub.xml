@@ -1,0 +1,113 @@
+<odoo>
+    <record id="view_sale_subscription_tree" model="ir.ui.view">
+        <field name="name">sale.subscription.tree</field>
+        <field name="model">sale.subscription</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="partner_id"/>
+                <field name="partner_invoice_id"/>
+                <field name="partner_shipping_id"/>
+                 <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="currency_id"/>
+                <field name="health"/>
+                <field name="to_renew"/>
+                <field name="recurring_rule_type"/>
+                <field name="recurring_interval"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_subscription_from" model="ir.ui.view">
+        <field name="name">sale.subscription.form</field>
+        <field name="model">sale.subscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="stage" widget="statusbar" nolabel="1" options="{'clickable':'1'}"/>
+                </header>
+                <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="reference"/>
+                    </group>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="partner_invoice_id"/>
+                        <field name="partner_shipping_id"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="currency_id"/>
+                        <field name="health"/>
+                    </group>
+                    <group>
+                        <field name="to_renew"/>
+                        <field name="template_id"/>
+                    </group>
+                    <group>
+                        <field name="recurring_rule_type"/>
+                        <field name="recurring_interval"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_subscription_search" model="ir.ui.view">
+        <field name="name">sale.subscription.search</field>
+        <field name="model">sale.subscription</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Name" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+                <filter name="filter_inprogress" string="Inprogress" domain="[('stage', '=', 'inprogress')]"/>
+                <group expand="1" string="Group By">
+                        <filter string="Name" name="group_by_name" context="{'group_by': 'name'}"/>
+                        <filter string="Reference" name="group_by_reference" context="{'group_by': 'reference'}"/>
+                        <filter string="Start Date" name="group_by_date_start" context="{'group_by': 'date_start'}"/>
+                        <filter string="End Date" name="group_by_date_end" context="{'group_by': 'date_end'}"/>
+                        <filter string="Health" name="group_by_health" context="{'group_by': 'health'}"/>
+                        <filter string="Stage" name="group_by_stage" context="{'group_by': 'stage'}"/>
+                    </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_subscription" model="ir.actions.act_window">
+            <field name="name">Sale Subscription</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.subscription</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_filter_inprogress': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view non content_smiling_face">
+                    Create your first sale subscription!
+                </p>
+            </field>
+    </record>
+
+    <menuitem id="menu_sale_subscription_root"
+              name="Sale Subscription"
+              sequence="0"/>
+    <menuitem id="menu_subscription_master"
+              name="Subscription"
+              parent="menu_sale_subscription_root"
+              sequence="0"/>
+    <menuitem id="menu_subscription"
+              name="Subscription"
+              parent="menu_subscription_master"
+              action="action_sale_subscription"
+              sequence="1"/>
+</odoo>

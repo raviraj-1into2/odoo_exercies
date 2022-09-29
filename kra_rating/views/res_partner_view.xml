@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="employee"/>
+<!--                    <filter name="employee" string="Employee" domain="[('employee', '=', True)]"/>-->
+                </xpath>
+            </field>
+        </record>
+
+<!--        <record id="view_order_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">sale.view.order.tree</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='invoice_status']" position="after">-->
+<!--                    <field name="delivery_status"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

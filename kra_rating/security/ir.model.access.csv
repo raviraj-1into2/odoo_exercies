@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.kra.rating,access_kra_rating,model_kra_rating,base.group_user,1,1,1,1
+access.year.year,access_year_year,model_year_year,base.group_user,1,1,1,1
+access.kra.line,access_kra_line,model_kra_line,base.group_user,1,1,1,1
+access.kra.question,access_kra_question,model_kra_question,base.group_user,1,1,1,1
